@@ -1,6 +1,8 @@
 package com.example.wishlist02.controllers;
 
 import com.example.wishlist02.repository.Wish;
+import com.example.wishlist02.repository.WishList;
+import com.example.wishlist02.repository.WishListRepository;
 import com.example.wishlist02.repository.WishRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.context.request.WebRequest;
 @Controller
 public class IndexController {
     WishRepository wishRepository = new WishRepository();
+    WishListRepository wishListRepository = new WishListRepository();
 
     @GetMapping("/")
     public String index(){
@@ -25,16 +28,21 @@ public class IndexController {
         return "listeOprettelse";
     }
 
-    @PostMapping("/opret")
-    public String opretListe(WebRequest dataFromForm){
-        System.out.println(dataFromForm.getParameter("titel"));
-        System.out.println(dataFromForm.getParameter("beskrivelse"));
-        System.out.println(dataFromForm.getParameter("pris"));
+    @PostMapping("/create")
+    public String createWish(WebRequest dataFromForm){
         Wish newWish = new Wish(dataFromForm.getParameter("titel"), dataFromForm.getParameter("beskrivelse"), Integer.parseInt(dataFromForm.getParameter("pris")));
-        System.out.println(newWish.toString());
-        wishRepository.saveWishToDB(newWish);
+        wishListRepository.getActiveWishList().addWish(newWish);
+        int wishID = wishRepository.saveWishToDB(newWish);
+        wishListRepository.saveWishListToDB(wishID);
+        return "redirect:/listeOprettelse";
+    }
 
-        return "redirect:/";
+    @PostMapping("/createList")
+    public String createList(WebRequest dataFromForm){
+        WishList newWishList = new WishList(dataFromForm.getParameter("wishListName"));
+        newWishList.getName();
+        wishListRepository.setActiveWishList(newWishList);
+        return "redirect:/listeOprettelse";
     }
 
 }

@@ -3,17 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>alleLister</title>
+    <link rel="stylesheet" href="css/style-ListeOprettelse.css">
 </head>
 <body>
-<a href="listeOprettelse">
-    <div id="OpretListe">
-        <h3>Opret ny ønskeliste</h3>
-    </div>
-</a>
 
-<form method="get" action="listeOprettelse">
-    <button type="submit" > see email</button>
-</form>
+
+<div>
+
+    <form method="POST" action="/createList" class="getInfo" >
+        <label for="wishListName">Titel på ønskeliste</label>
+        <input type="text" id="wishListName" name="wishListName">
+        <label for="user">Bruger navn</label>
+        <input type="text" id="user" name="user">
+        <input type="submit">
+    </form>
+
+</div>
+
+
 
 </body>
 </html>
