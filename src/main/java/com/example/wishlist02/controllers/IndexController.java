@@ -20,11 +20,8 @@ public class IndexController {
     }
     @GetMapping("/Lists")
     public String alleLister(Model m){
-       // wishListRepository.getAllWishLists();
-      //  m.addAttribute("allWishlistsName",wishListRepository.getAllWishlistName());
-      //  m.addAttribute("allWishlistsID" , wishListRepository.getAllWishlistID());
         m.addAttribute("allWishLists",wishListRepository.getAllWishLists());
-        return "allelister";
+        return "all-lists";
     }
 
     @GetMapping("/list")
