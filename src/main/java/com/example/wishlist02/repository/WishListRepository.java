@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class WishListRepository {
     private WishList activeWishList;
+    private ArrayList<WishList> allWishList;
 
     private final String username = "web@wishlistdbkea22";
     private final String password = "SuperSecret";
@@ -13,6 +14,16 @@ public class WishListRepository {
 
 
     public WishListRepository() {
+    }
+
+    public WishList getWishlistByID(int id){
+        WishList wishListToReturn = new WishList();
+        for(WishList wishlist: allWishList){
+            if (wishlist.getWishList_ID() == id){
+                return wishlist;
+            }
+        }
+        return wishListToReturn;
     }
 
     public WishList getActiveWishList() {
@@ -62,16 +73,19 @@ public class WishListRepository {
         }
     }
 
-    public ArrayList<String> getAllWishLists(){
-        ArrayList<String> allWishLists = new ArrayList<>();
+    public ArrayList<WishList> getAllWishLists(){
+        ArrayList<WishList> allWishLists = new ArrayList<>();
         try{
             Connection conn = DriverManager.getConnection(connectionString,username,password);
-            PreparedStatement psts = conn.prepareStatement("SELECT wishlist_name from wishlist");
+            PreparedStatement psts = conn.prepareStatement("SELECT * from wishlist");
             ResultSet resultSet = psts.executeQuery();
 
             while(resultSet.next()){
-                allWishLists.add(resultSet.getString(1));
+                String id = resultSet.getString(1);
+                allWishLists.add(new WishList(resultSet.getString(2),Integer.parseInt(id), "list?id=" + id));
+
             }
+            this.allWishList = allWishLists;
             return allWishLists;
         }
 
@@ -83,4 +97,33 @@ public class WishListRepository {
         return allWishLists;
 
     }
+
+    public ArrayList<Wish> getWishesFromWishlistID(String id){
+        ArrayList<Wish> allWishes = new ArrayList<>();
+        try{
+
+            Connection conn = DriverManager.getConnection(connectionString,username,password);
+            PreparedStatement psts = conn.prepareStatement("select wish_name,description,price from wishlist left join wish on wishlist.wishlist_id = wish.wishlist_id\n" +
+                    "where wishlist.wishlist_id =" +id);
+
+            ResultSet resultSet = psts.executeQuery();
+
+            while(resultSet.next()){
+                allWishes.add(new Wish(resultSet.getString(1),resultSet.getString(2), resultSet.getInt(3)));
+            }
+            return allWishes;
+
+        } catch (SQLException e) {
+            System.out.println("Cannot connect to database");
+            e.printStackTrace();
+        }
+        return allWishes;
+    }
+
+    public void addToAllWishlists(WishList wishlist){
+        allWishList.add(wishlist);
+    }
+
+
+
 }

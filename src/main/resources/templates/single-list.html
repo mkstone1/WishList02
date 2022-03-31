@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>listeOprettelse</title>
+  <link rel="stylesheet" href="css/style-ListeOprettelse.css">
+</head>
+<body>
+<div>
+
+  <form method="POST" action="/createWishAndAddToWishList" class="getInfo" >
+    <label for="titel">Titel</label>
+    <input type="text" id="titel" name="titel">
+    <label for="beskrivelse">Beskrivelse</label>
+    <input type="text" id="beskrivelse" name="beskrivelse">
+    <label for="pris">Pris</label>
+    <input type="number" id="pris" name="pris">
+    <input type="submit">
+  </form>
+
+</div>
+<div>
+  <h2>Ønsker på denne liste</h2>
+  <p th:each="wishes: ${wishes}" >
+    <span th:text="${wishes.name}"></span>
+    <span th:text="${wishes.description}"></span>
+    <span th:text="${wishes.price}"></span>
+  </p>
+</div>
+
+</body>
+</html>
+</body>
+</html>

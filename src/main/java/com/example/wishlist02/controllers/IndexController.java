@@ -18,22 +18,38 @@ public class IndexController {
     public String index(){
         return "index";
     }
-    @GetMapping("/AllLists")
+    @GetMapping("/Lists")
     public String alleLister(Model m){
-        m.addAttribute("allWishlists",wishListRepository.getAllWishLists());
+       // wishListRepository.getAllWishLists();
+      //  m.addAttribute("allWishlistsName",wishListRepository.getAllWishlistName());
+      //  m.addAttribute("allWishlistsID" , wishListRepository.getAllWishlistID());
+        m.addAttribute("allWishLists",wishListRepository.getAllWishLists());
         return "allelister";
     }
 
-    @GetMapping("/listeOprettelse")
-    public String listeOprettelse(){
-        return "listeOprettelse";
+    @GetMapping("/list")
+    public String getSingleListById(@RequestParam String id, Model m){
+
+        m.addAttribute("wishes", wishListRepository.getWishesFromWishlistID(id));
+        wishListRepository.setActiveWishList(wishListRepository.getWishlistByID(Integer.parseInt(id)));
+
+        //Kode der fetcher fra databasen, baseret på id
+        //Put data på template
+        return "single-list";
     }
+
+    /*@GetMapping("/listeOprettelse")
+    public String listeOprettelse(Model m){
+
+        return "listeOprettelse";
+    }*/
 
     @PostMapping("/createWishAndAddToWishList")
     public String createWish(WebRequest dataFromForm){
         Wish newWish = new Wish(dataFromForm.getParameter("titel"), dataFromForm.getParameter("beskrivelse"), Integer.parseInt(dataFromForm.getParameter("pris")));
         int wishID = wishRepository.saveWishToDB(newWish, wishListRepository.getActiveWishList().getWishList_ID());
-        return "redirect:/listeOprettelse";
+
+        return "redirect:/"+ wishListRepository.getActiveWishList().getUrl();
     }
 
     @PostMapping("/createWishList")
@@ -42,15 +58,11 @@ public class IndexController {
         wishListRepository.setActiveWishList(newWishList);
         wishListRepository.saveWishListToDB();
         newWishList.setWishList_ID(wishListRepository.getLastCreatedWishListID());
-        return "redirect:/listeOprettelse";
+        newWishList.generateUrl();
+        wishListRepository.addToAllWishlists(newWishList);
+        wishListRepository.setActiveWishList(newWishList);
+        return "redirect:/"+wishListRepository.getActiveWishList().getUrl();
     }
 
-   /* @RequestMapping(value = "/getWishlist/{WishlistID}", method = RequestMethod.POST)
-    public String getWishlist(@PathVariable("wishListID") String wishlistId, Model model){
-        model.addAttribute("wishlist",wishListRepository.getActiveWishList().getWishList_ID());
-        return "WishList";
-
-        https://www.netjstech.com/2018/08/spring-mvc-example-with-pathvaribale-annotation.html
-    }*/
 
 }
