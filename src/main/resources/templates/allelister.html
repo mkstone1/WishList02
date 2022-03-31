@@ -10,7 +10,7 @@
 
 <div>
 
-    <form method="POST" action="/createList" class="getInfo" >
+    <form method="POST" action="/createWishList" class="getInfo" >
         <label for="wishListName">Titel på ønskeliste</label>
         <input type="text" id="wishListName" name="wishListName">
         <label for="user">Bruger navn</label>
@@ -18,6 +18,16 @@
         <input type="submit">
     </form>
 
+</div>
+
+<div>
+    <h3>
+        alle lister
+    </h3>
+    <p th:each="allWishlists: ${allWishlists}">
+        <a th:href="${allWishlists}" th:text="${allWishlists}"></a>
+        <span th:text="${allWishlists}"></span>
+    </p>
 </div>
 
 

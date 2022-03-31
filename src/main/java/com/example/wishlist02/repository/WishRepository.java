@@ -4,8 +4,8 @@ import java.sql.*;
 
 public class WishRepository {
 
-    public int saveWishToDB(Wish wishToSave) {
-        String SQL_INSERT = "INSERT INTO wish (NAME, description, price) VALUES (?,?,?)";
+    public int saveWishToDB(Wish wishToSave, int wishListID) {
+        String SQL_INSERT = "INSERT INTO wish (wish_name, description, price, wishlist_id) VALUES (?,?,?,?)";
         try {
             //Til at oprette forbindelse til DB
             String username = "web@wishlistdbkea22";
@@ -23,6 +23,7 @@ public class WishRepository {
             preparedStatement.setString(1, wishName);
             preparedStatement.setString(2, wishDesc);
             preparedStatement.setInt(3, wishPrice);
+            preparedStatement.setInt(4, wishListID);
 
             int row = preparedStatement.executeUpdate();
 
@@ -36,7 +37,7 @@ public class WishRepository {
 
 
         } catch (SQLException e) {
-            System.out.println("Cannot connect to database");
+            System.out.println("Cannot connect to database or error in db");
             e.printStackTrace();
         }
         return -1;
