@@ -1,5 +1,7 @@
 package com.example.wishlist02.repository;
 
+import com.example.wishlist02.Model.Wish;
+
 import java.sql.*;
 
 public class WishRepository {

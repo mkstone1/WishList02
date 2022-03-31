@@ -1,4 +1,4 @@
-package com.example.wishlist02.repository;
+package com.example.wishlist02.Model;
 
 
 public class Wish {

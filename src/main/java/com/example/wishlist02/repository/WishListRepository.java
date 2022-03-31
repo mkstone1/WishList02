@@ -1,5 +1,8 @@
 package com.example.wishlist02.repository;
 
+import com.example.wishlist02.Model.Wish;
+import com.example.wishlist02.Model.WishList;
+
 import java.sql.*;
 import java.util.ArrayList;
 

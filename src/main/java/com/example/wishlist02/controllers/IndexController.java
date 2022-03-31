@@ -1,7 +1,8 @@
 package com.example.wishlist02.controllers;
 
-import com.example.wishlist02.repository.Wish;
-import com.example.wishlist02.repository.WishList;
+import com.example.wishlist02.Model.User;
+import com.example.wishlist02.Model.Wish;
+import com.example.wishlist02.Model.WishList;
 import com.example.wishlist02.repository.WishListRepository;
 import com.example.wishlist02.repository.WishRepository;
 import org.springframework.stereotype.Controller;
@@ -15,17 +16,18 @@ public class IndexController {
     WishListRepository wishListRepository = new WishListRepository();
 
     @GetMapping("/")
-    public String index(){
+    public String index() {
         return "index";
     }
+
     @GetMapping("/Lists")
-    public String alleLister(Model m){
-        m.addAttribute("allWishLists",wishListRepository.getAllWishLists());
+    public String alleLister(Model m) {
+        m.addAttribute("allWishLists", wishListRepository.getAllWishLists());
         return "all-lists";
     }
 
     @GetMapping("/list")
-    public String getSingleListById(@RequestParam String id, Model m){
+    public String getSingleListById(@RequestParam String id, Model m) {
 
         m.addAttribute("wishes", wishListRepository.getWishesFromWishlistID(id));
         wishListRepository.setActiveWishList(wishListRepository.getWishlistByID(Integer.parseInt(id)));
@@ -42,15 +44,15 @@ public class IndexController {
     }*/
 
     @PostMapping("/createWishAndAddToWishList")
-    public String createWish(WebRequest dataFromForm){
+    public String createWish(WebRequest dataFromForm) {
         Wish newWish = new Wish(dataFromForm.getParameter("titel"), dataFromForm.getParameter("beskrivelse"), Integer.parseInt(dataFromForm.getParameter("pris")));
         int wishID = wishRepository.saveWishToDB(newWish, wishListRepository.getActiveWishList().getWishList_ID());
 
-        return "redirect:/"+ wishListRepository.getActiveWishList().getUrl();
+        return "redirect:/" + wishListRepository.getActiveWishList().getUrl();
     }
 
     @PostMapping("/createWishList")
-    public String createList(WebRequest dataFromForm){
+    public String createList(WebRequest dataFromForm) {
         WishList newWishList = new WishList(dataFromForm.getParameter("wishListName"));
         wishListRepository.setActiveWishList(newWishList);
         wishListRepository.saveWishListToDB();
@@ -58,7 +60,23 @@ public class IndexController {
         newWishList.generateUrl();
         wishListRepository.addToAllWishlists(newWishList);
         wishListRepository.setActiveWishList(newWishList);
-        return "redirect:/"+wishListRepository.getActiveWishList().getUrl();
+        return "redirect:/" + wishListRepository.getActiveWishList().getUrl();
+    }
+
+    @PostMapping("/createUser")
+    public String createUser(WebRequest userData) {
+        String username = userData.getParameter("username");
+        String password = userData.getParameter("password");
+        String firstname = userData.getParameter("firstname");
+        String lastname = userData.getParameter("lastname");
+        String email = userData.getParameter("email");
+        String phoneNumber = userData.getParameter("phone-number");
+
+        User newUser = new User(username,password,firstname,lastname,email,phoneNumber);
+
+
+
+        return "redirect:/";
     }
 
 
