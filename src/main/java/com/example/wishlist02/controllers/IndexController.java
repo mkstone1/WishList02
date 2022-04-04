@@ -65,6 +65,7 @@ public class IndexController {
 
     @PostMapping("/createUser")
     public String createUser(WebRequest userData) {
+
         String username = userData.getParameter("username");
         String password = userData.getParameter("password");
         String firstname = userData.getParameter("firstname");
@@ -73,10 +74,8 @@ public class IndexController {
         String phoneNumber = userData.getParameter("phone-number");
 
         User newUser = new User(username,password,firstname,lastname,email,phoneNumber);
-
-
-
         return "redirect:/";
+
     }
 
 
