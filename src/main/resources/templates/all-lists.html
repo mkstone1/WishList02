@@ -24,9 +24,6 @@
     <h3>
         alle lister
     </h3>
-    <!--  <p th:each="allWishlistsName,allWishlistsID: ${allWishlistsName}">
-        <a th:href="${allWishlistsID}" th:text="${allWishlistsName}"></a>
-        <span th:text="${allWishlistsName}"></span> -->
     <p th:each="allWishLists: ${allWishLists}" >
         <a th:href="${allWishLists.url}" th:text="${allWishLists.name}"></a>
 

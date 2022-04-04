@@ -3,6 +3,7 @@ package com.example.wishlist02.controllers;
 import com.example.wishlist02.Model.User;
 import com.example.wishlist02.Model.Wish;
 import com.example.wishlist02.Model.WishList;
+import com.example.wishlist02.repository.UserRepository;
 import com.example.wishlist02.repository.WishListRepository;
 import com.example.wishlist02.repository.WishRepository;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.context.request.WebRequest;
 public class IndexController {
     WishRepository wishRepository = new WishRepository();
     WishListRepository wishListRepository = new WishListRepository();
+    UserRepository userRepository = new UserRepository();
 
     @GetMapping("/")
     public String index() {
@@ -26,10 +28,15 @@ public class IndexController {
         return "all-lists";
     }
 
+    @GetMapping("/createUser")
+    public String createUser(){
+        return "create-user";
+    }
+
     @GetMapping("/list")
     public String getSingleListById(@RequestParam String id, Model m) {
 
-        m.addAttribute("wishes", wishListRepository.getWishesFromWishlistID(id));
+        m.addAttribute("wishes", wishRepository.getWishesFromWishlistID(id));
         wishListRepository.setActiveWishList(wishListRepository.getWishlistByID(Integer.parseInt(id)));
 
         //Kode der fetcher fra databasen, baseret på id
@@ -37,16 +44,11 @@ public class IndexController {
         return "single-list";
     }
 
-    /*@GetMapping("/listeOprettelse")
-    public String listeOprettelse(Model m){
-
-        return "listeOprettelse";
-    }*/
-
     @PostMapping("/createWishAndAddToWishList")
     public String createWish(WebRequest dataFromForm) {
         Wish newWish = new Wish(dataFromForm.getParameter("titel"), dataFromForm.getParameter("beskrivelse"), Integer.parseInt(dataFromForm.getParameter("pris")));
         int wishID = wishRepository.saveWishToDB(newWish, wishListRepository.getActiveWishList().getWishList_ID());
+        newWish.setWishID(wishID);
 
         return "redirect:/" + wishListRepository.getActiveWishList().getUrl();
     }
@@ -74,9 +76,15 @@ public class IndexController {
         String phoneNumber = userData.getParameter("phone-number");
 
         User newUser = new User(username,password,firstname,lastname,email,phoneNumber);
+        userRepository.createUser(newUser);
         return "redirect:/";
 
     }
+    @PostMapping("/deleteWish")
+    public String deleteWish(@RequestParam String id){
+
+
+    return "1";}
 
 
 }

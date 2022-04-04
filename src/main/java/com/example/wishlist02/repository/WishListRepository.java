@@ -17,6 +17,7 @@ public class WishListRepository {
 
 
     public WishListRepository() {
+        allWishList = getAllWishLists();
     }
 
     public WishList getWishlistByID(int id){
@@ -101,27 +102,7 @@ public class WishListRepository {
 
     }
 
-    public ArrayList<Wish> getWishesFromWishlistID(String id){
-        ArrayList<Wish> allWishes = new ArrayList<>();
-        try{
 
-            Connection conn = DriverManager.getConnection(connectionString,username,password);
-            PreparedStatement psts = conn.prepareStatement("select wish_name,description,price from wishlist left join wish on wishlist.wishlist_id = wish.wishlist_id\n" +
-                    "where wishlist.wishlist_id =" +id);
-
-            ResultSet resultSet = psts.executeQuery();
-
-            while(resultSet.next()){
-                allWishes.add(new Wish(resultSet.getString(1),resultSet.getString(2), resultSet.getInt(3)));
-            }
-            return allWishes;
-
-        } catch (SQLException e) {
-            System.out.println("Cannot connect to database");
-            e.printStackTrace();
-        }
-        return allWishes;
-    }
 
     public void addToAllWishlists(WishList wishlist){
         allWishList.add(wishlist);
