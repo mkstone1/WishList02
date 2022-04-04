@@ -33,7 +33,7 @@ public class WishRepository {
             //Finder det wishID der lige er blevet oprettet og returnere det
             PreparedStatement psts = conn.prepareStatement("SELECT wishID from wish order by wishID DESC LIMIT 1");
             ResultSet resultSet = psts.executeQuery();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 row = Integer.parseInt(resultSet.getString(1));
             }
             return row;
@@ -46,23 +46,23 @@ public class WishRepository {
         return -1;
     }
 
-    public ArrayList<Wish> getWishesFromWishlistID(String id){
+    public ArrayList<Wish> getWishesFromWishlistID(String id) {
         ArrayList<Wish> allWishes = new ArrayList<>();
-        try{
+        try {
 
-            Connection conn = DriverManager.getConnection(connectionString,username,password);
-            PreparedStatement psts = conn.prepareStatement("select wish_name,description,price,wishID from wish where wishlist_id =" +id);
+            Connection conn = DriverManager.getConnection(connectionString, username, password);
+            PreparedStatement psts = conn.prepareStatement("select wish_name,description,price,wishID from wish where wishlist_id =" + id);
 //select wish_name,description,price from wishlist left join wish on wishlist.wishlist_id = wish.wishlist_id\n" +
 //                    "where wishlist.wishlist_id =" +id
 
             ResultSet resultSet = psts.executeQuery();
 
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 String wish_name = resultSet.getString(1);
                 String description = resultSet.getString(2);
                 int price = resultSet.getInt(3);
                 int wishID = resultSet.getInt(4);
-                allWishes.add(new Wish(wish_name,description,price,wishID));
+                allWishes.add(new Wish(wish_name, description, price, wishID));
             }
             return allWishes;
 
@@ -71,5 +71,20 @@ public class WishRepository {
             e.printStackTrace();
         }
         return allWishes;
+    }
+
+    public void deleteWishFromWishlistByWishID(String id) {
+        String SQL_DELETE = "DELETE FROM wish where wishID= (?)";
+        try {
+            Connection conn = DriverManager.getConnection(connectionString, username, password);
+
+            PreparedStatement preparedStatement = conn.prepareStatement(SQL_DELETE);
+            preparedStatement.setString(1, id);
+            int row = preparedStatement.executeUpdate();
+
+
+        } catch (SQLException e) {
+            System.out.println("Cannot connect to database");
+        }
     }
 }

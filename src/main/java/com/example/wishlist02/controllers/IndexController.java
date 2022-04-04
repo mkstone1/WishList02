@@ -6,6 +6,7 @@ import com.example.wishlist02.Model.WishList;
 import com.example.wishlist02.repository.UserRepository;
 import com.example.wishlist02.repository.WishListRepository;
 import com.example.wishlist02.repository.WishRepository;
+import com.example.wishlist02.services.validateUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -77,14 +78,28 @@ public class IndexController {
 
         User newUser = new User(username,password,firstname,lastname,email,phoneNumber);
         userRepository.createUser(newUser);
-        return "redirect:/";
+        return "redirect:/all-lists";
 
     }
-    @PostMapping("/deleteWish")
+    @GetMapping("/deleteWish")
     public String deleteWish(@RequestParam String id){
+        wishRepository.deleteWishFromWishlistByWishID(id);
 
+    return "redirect:/" + wishListRepository.getActiveWishList().getUrl();
+    }
 
-    return "1";}
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String validateLogin(WebRequest userData){
+        String username = userData.getParameter("username");
+        String password = userData.getParameter("password");
+        validateUser validate = new validateUser(userRepository.getAllUsers(),username,password);
+        return "1";
+    }
 
 
 }

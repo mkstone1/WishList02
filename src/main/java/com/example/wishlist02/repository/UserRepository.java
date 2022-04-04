@@ -2,10 +2,7 @@ package com.example.wishlist02.repository;
 
 import com.example.wishlist02.Model.User;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class UserRepository {
@@ -39,4 +36,27 @@ public class UserRepository {
             e.printStackTrace();
         }
     }
+
+    public ArrayList<User> getAllUsers(){
+        return allUsers;
+    }
+
+    public ArrayList<User> getAllUsersFromDB(){
+        ArrayList<User> allUsers = new ArrayList<>();
+        try {
+            Connection conn = DriverManager.getConnection(connectionString, username, password);
+            PreparedStatement psts = conn.prepareStatement("SELECT * from user");
+            ResultSet resultSet = psts.executeQuery();
+
+            while(resultSet.next()){
+                User userFromDB = new User(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4),resultSet.getString(5),resultSet.getString(6),resultSet.getString(7));
+                allUsers.add(userFromDB);
+            }
+            return allUsers;
+        }
+        catch (SQLException e){
+            System.out.println("Cannot connect to database");
+        }
+
+    return allUsers;}
 }

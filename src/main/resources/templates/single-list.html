@@ -29,15 +29,11 @@
 <div>
     <h2>Ønsker på denne liste</h2>
     <div>
-        <form action="/deleteWish" method="GET" id="deleteUser">
-        </form>
     <p th:each="wishes: ${wishes}">
         <a th:href="${'/deleteWish?id='+wishes.wishID}"> Delete wish</a>
         <span th:text="${wishes.name}"></span>
         <span th:text="${wishes.description}"></span>
         <span th:text="${wishes.price}"></span>
-
-
     </p>
     </div>
 </div>

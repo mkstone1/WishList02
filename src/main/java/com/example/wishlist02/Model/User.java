@@ -1,6 +1,7 @@
 package com.example.wishlist02.Model;
 
 public class User {
+    private String userID;
     private String username;
     private String firstname;
     private String lastname;
@@ -15,6 +16,15 @@ public class User {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
+    }
+    public User(String userID, String username , String firstname, String lastname, String email, String phoneNumber, String password) {
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+        this.userID = userID;
     }
 
     public String getUsername() {
