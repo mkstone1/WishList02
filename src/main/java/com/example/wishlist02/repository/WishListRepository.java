@@ -58,13 +58,15 @@ public class WishListRepository {
         this.activeWishList = activeWishList;
     }
     public void saveWishListToDB() {
-        String SQL_INSERT = "INSERT INTO wishlist (wishlist_name) VALUES (?)";
+        String SQL_INSERT = "INSERT INTO wishlist (wishlist_name,user_id) VALUES (?,?)";
         try{
             Connection conn = DriverManager.getConnection(connectionString,username,password);
 
 
             PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT);
             preparedStatement.setString(1, activeWishList.getName());
+            preparedStatement.setString(2, activeWishList.getUserID());
+
 
             int row = preparedStatement.executeUpdate();
 
@@ -86,7 +88,7 @@ public class WishListRepository {
 
             while(resultSet.next()){
                 String id = resultSet.getString(1);
-                allWishLists.add(new WishList(resultSet.getString(2),Integer.parseInt(id), "list?id=" + id));
+                allWishLists.add(new WishList(resultSet.getString(2),Integer.parseInt(id), "list?id=" + id,resultSet.getString(3)));
 
             }
             this.allWishList = allWishLists;
@@ -102,12 +104,47 @@ public class WishListRepository {
 
     }
 
+    /*public ArrayList<WishList> getAllWishListsFromID(){
+        ArrayList<WishList> allWishLists = new ArrayList<>();
+        try{
+            Connection conn = DriverManager.getConnection(connectionString,username,password);
+            PreparedStatement psts = conn.prepareStatement("SELECT * from wishlist");
+            ResultSet resultSet = psts.executeQuery();
+
+            while(resultSet.next()){
+                String id = resultSet.getString(1);
+                allWishLists.add(new WishList(resultSet.getString(2),Integer.parseInt(id), "list?id=" + id));
+
+            }
+            this.allWishList = allWishLists;
+            return allWishLists;
+        }
+
+
+        catch (SQLException e){
+
+        }
+        return allWishLists;
+
+    }*/
+
 
 
     public void addToAllWishlists(WishList wishlist){
         allWishList.add(wishlist);
     }
 
+    public ArrayList<WishList> getWishListByUserID(String userID){
+        ArrayList<WishList> allWishLists = getAllWishLists();
+        ArrayList<WishList> wishListFromCorrectUser = new ArrayList<>();
+        for(WishList list: allWishLists){
+            if(list.getUserID().equals(userID)){
+                wishListFromCorrectUser.add(list);
+            }
+        }
+        return wishListFromCorrectUser;
+
+    }
 
 
 }

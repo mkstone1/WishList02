@@ -11,12 +11,12 @@ public class validateUser {
         this.allUsers = allUsers;
     }
 
-    public boolean checkUser(String username, String password){
+    public String checkUser(String username, String password){
         for(User user : allUsers){
             if(username.equals(user.getUsername()) && password.equals(user.getPassword())){
-                return true;
+                return user.getUserID();
             }
         }
-        return false;
+        return "";
     }
 }

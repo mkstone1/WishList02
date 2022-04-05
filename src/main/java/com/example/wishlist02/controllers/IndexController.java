@@ -25,9 +25,10 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("/Lists")
-    public String allLists(Model m) {
-        m.addAttribute("allWishLists", wishListRepository.getAllWishLists());
+    @GetMapping("/lists")
+    public String allLists(Model m, @RequestParam String userID) {
+        m.addAttribute("userID", userID);
+        m.addAttribute("allWishLists", wishListRepository.getWishListByUserID(userID));
         return "all-lists";
     }
 
@@ -58,7 +59,7 @@ public class IndexController {
 
     @PostMapping("/createWishList")
     public String createList(WebRequest dataFromForm) {
-        WishList newWishList = new WishList(dataFromForm.getParameter("wishListName"));
+        WishList newWishList = new WishList(dataFromForm.getParameter("wishListName") ,dataFromForm.getParameter("userID"));
         wishListRepository.setActiveWishList(newWishList);
         wishListRepository.saveWishListToDB();
         newWishList.setWishList_ID(wishListRepository.getLastCreatedWishListID());
@@ -94,6 +95,10 @@ public class IndexController {
     public String login(){
         return "login";
     }
+    @GetMapping("/login-error")
+    public String loginError(){
+        return "login-error";
+    }
 
     @PostMapping("/login")
     public String validateLogin(WebRequest userData){
@@ -101,11 +106,11 @@ public class IndexController {
         String password = userData.getParameter("password");
         ArrayList<User> allUsersFromDB= userRepository.getAllUsersFromDB();
         validateUser validate = new validateUser(allUsersFromDB);
-        boolean userExisist = validate.checkUser(username,password);
-        if(!userExisist){
-            return "redirect:/";
+        String userExists = validate.checkUser(username,password);
+        if(userExists.equals("")){
+            return "redirect:/login-error";
         }
-        return "redirect:/Lists";
+        return "redirect:/lists" +"?userID=" + userExists;
     }
 
 
