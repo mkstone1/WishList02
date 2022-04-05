@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
+import java.util.ArrayList;
+
 @Controller
 public class IndexController {
     WishRepository wishRepository = new WishRepository();
@@ -24,7 +26,7 @@ public class IndexController {
     }
 
     @GetMapping("/Lists")
-    public String alleLister(Model m) {
+    public String allLists(Model m) {
         m.addAttribute("allWishLists", wishListRepository.getAllWishLists());
         return "all-lists";
     }
@@ -97,8 +99,13 @@ public class IndexController {
     public String validateLogin(WebRequest userData){
         String username = userData.getParameter("username");
         String password = userData.getParameter("password");
-        validateUser validate = new validateUser(userRepository.getAllUsers(),username,password);
-        return "1";
+        ArrayList<User> allUsersFromDB= userRepository.getAllUsersFromDB();
+        validateUser validate = new validateUser(allUsersFromDB);
+        boolean userExisist = validate.checkUser(username,password);
+        if(!userExisist){
+            return "redirect:/";
+        }
+        return "redirect:/Lists";
     }
 
 
