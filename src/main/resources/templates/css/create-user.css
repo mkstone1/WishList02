@@ -1,0 +1,16 @@
+.create-user-header{
+    display: flex;
+    justify-content: center;
+
+}
+
+.flex-box-create-user{
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    text-align: left;
+}
+
+

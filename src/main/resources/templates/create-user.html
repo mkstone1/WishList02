@@ -1,32 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>create user</title>
+    <title>ADD USER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/create-user.css">
 </head>
+
 <body>
 
-<form method="POST" action="/createUser" class="getInfo" >
-    <label for="username">User name</label>
-    <input type="text" id="username" name="username">
+<header class="create-user-header">
+    <h2>Add New User</h2>
+</header>
 
-    <label for="password">password</label>
-    <input type="password" id="password" name="password">
+<br>
+<br>
 
-    <label for="firstname">First name</label>
-    <input type="text" id="firstname" name="firstname">
+<div class="flex-box-create-user">
 
-    <label for="lastname">Last name</label>
-    <input type="text" id="lastname" name="lastname">
 
-    <label for="email">email</label>
-    <input type="text" id="email" name="email">
+<form method="POST" action="/createUser">
 
-    <label for="phone-number">phone number</label>
-    <input type="text" id="phone-number" name="phone-number">
+<table>
 
-    <input type="submit">
+    <tr>
+        <th><label for="username">User Name</label></th>
+        <th><input type="text" id="username" name="username" size="50"></th>
+    </tr>
+
+
+    <tr>
+        <th><label for="firstname">First Name</label></th>
+        <th><input type="text" id="firstname" name="firstname" size="50"></th>
+    </tr>
+
+    <tr>
+        <th><label for="lastname">Last Name</label></th>
+        <th><input type="text" id="lastname" name="lastname" size="50"></th>
+    </tr>
+
+    <tr>
+        <th><label for="email">Email</label></th>
+        <th><input type="text" id="email" name="email" size="50"></th>
+    </tr>
+
+    <tr>
+        <th><label for="password">Password</label></th>
+        <th><input type="text" id="password" name="password" size="50"></th>
+    </tr>
+
+    <tr>
+        <th><label for="phone-number">Phone number</label></th>
+        <th><input type="text" id="phone-number" name="phone-number" size="50"></th>
+    </tr>
+
+    <tr>
+        <th><input type="submit" value="Add User"></th>
+    </tr>
+
+</table>
+
 </form>
 
+</div>
 </body>
 </html>
