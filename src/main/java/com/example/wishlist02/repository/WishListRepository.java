@@ -97,36 +97,13 @@ public class WishListRepository {
 
 
         catch (SQLException e){
-
+            System.out.println("Cannot connect to database");
+            e.printStackTrace();
         }
 
         return allWishLists;
 
     }
-
-    /*public ArrayList<WishList> getAllWishListsFromID(){
-        ArrayList<WishList> allWishLists = new ArrayList<>();
-        try{
-            Connection conn = DriverManager.getConnection(connectionString,username,password);
-            PreparedStatement psts = conn.prepareStatement("SELECT * from wishlist");
-            ResultSet resultSet = psts.executeQuery();
-
-            while(resultSet.next()){
-                String id = resultSet.getString(1);
-                allWishLists.add(new WishList(resultSet.getString(2),Integer.parseInt(id), "list?id=" + id));
-
-            }
-            this.allWishList = allWishLists;
-            return allWishLists;
-        }
-
-
-        catch (SQLException e){
-
-        }
-        return allWishLists;
-
-    }*/
 
 
 
@@ -135,16 +112,41 @@ public class WishListRepository {
     }
 
     public ArrayList<WishList> getWishListByUserID(String userID){
-        ArrayList<WishList> allWishLists = getAllWishLists();
-        ArrayList<WishList> wishListFromCorrectUser = new ArrayList<>();
-        for(WishList list: allWishLists){
-            if(list.getUserID().equals(userID)){
-                wishListFromCorrectUser.add(list);
+        ArrayList<WishList> wishListsByID = new ArrayList<>();
+        try{
+            Connection conn = DriverManager.getConnection(connectionString,username,password);
+            PreparedStatement psts = conn.prepareStatement("SELECT * from wishlist where user_id =" + userID);
+            ResultSet resultSet = psts.executeQuery();
+
+            while(resultSet.next()){
+                String id = resultSet.getString(1);
+                wishListsByID.add(new WishList(resultSet.getString(2),Integer.parseInt(id), "list?id=" + id,resultSet.getString(3)));
             }
+            this.allWishList = wishListsByID;
+            return wishListsByID;
         }
-        return wishListFromCorrectUser;
+
+
+        catch (SQLException e){
+            System.out.println("Cannot connect to database");
+            e.printStackTrace();
+        }
+
+        return wishListsByID;
 
     }
 
+    public void deleteWishListByID(String ID){
+        String SQL_DELETE = "DELETE FROM wishlist where wishlist_id= (?)";
+        try{
+            Connection conn = DriverManager.getConnection(connectionString,username,password);
+            PreparedStatement preparedStatement = conn.prepareStatement(SQL_DELETE);
+            preparedStatement.setString(1, ID);
+            int row = preparedStatement.executeUpdate();
+    }
+        catch (SQLException e){
+            System.out.println("ERROR");
+        }
 
-}
+
+}}

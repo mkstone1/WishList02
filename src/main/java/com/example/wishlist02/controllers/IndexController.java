@@ -6,7 +6,8 @@ import com.example.wishlist02.Model.WishList;
 import com.example.wishlist02.repository.UserRepository;
 import com.example.wishlist02.repository.WishListRepository;
 import com.example.wishlist02.repository.WishRepository;
-import com.example.wishlist02.services.validateUser;
+import com.example.wishlist02.services.UserServices;
+import com.example.wishlist02.services.WishListServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,8 @@ public class IndexController {
     WishRepository wishRepository = new WishRepository();
     WishListRepository wishListRepository = new WishListRepository();
     UserRepository userRepository = new UserRepository();
+    UserServices userServices = new UserServices();
+    WishListServices wishListServices = new WishListServices();
 
     @GetMapping("/")
     public String index() {
@@ -59,14 +62,21 @@ public class IndexController {
 
     @PostMapping("/createWishList")
     public String createList(WebRequest dataFromForm) {
-        WishList newWishList = new WishList(dataFromForm.getParameter("wishListName") ,dataFromForm.getParameter("userID"));
+        String listName = dataFromForm.getParameter("wishListName");
+        String userID = dataFromForm.getParameter("userID");
+        boolean doesListExist = wishListServices.doesWishListExist(listName,wishListRepository.getWishListByUserID(userID));
+        if(!doesListExist){
+        WishList newWishList = new WishList( listName,userID);
         wishListRepository.setActiveWishList(newWishList);
         wishListRepository.saveWishListToDB();
         newWishList.setWishList_ID(wishListRepository.getLastCreatedWishListID());
         newWishList.generateUrl();
         wishListRepository.addToAllWishlists(newWishList);
         wishListRepository.setActiveWishList(newWishList);
-        return "redirect:/" + wishListRepository.getActiveWishList().getUrl();
+        return "redirect:/" + wishListRepository.getActiveWishList().getUrl();}
+        else{
+            return "redirect:/lists" +"?userID=" + userID;
+        }
     }
 
     @PostMapping("/createUser")
@@ -105,12 +115,17 @@ public class IndexController {
         String username = userData.getParameter("username");
         String password = userData.getParameter("password");
         ArrayList<User> allUsersFromDB= userRepository.getAllUsersFromDB();
-        validateUser validate = new validateUser(allUsersFromDB);
-        String userExists = validate.checkUser(username,password);
+        String userExists = userServices.checkUser(username,password,allUsersFromDB);
         if(userExists.equals("")){
             return "redirect:/login-error";
         }
         return "redirect:/lists" +"?userID=" + userExists;
+    }
+
+    @GetMapping("/deleteWishList")
+    public String deleteWishList(@RequestParam String wishListID, @RequestParam String userID){
+        wishListRepository.deleteWishListByID(wishListID);
+        return "redirect:/lists" +"?userID=" + userID;
     }
 
 

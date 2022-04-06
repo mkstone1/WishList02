@@ -4,14 +4,9 @@ import com.example.wishlist02.Model.User;
 
 import java.util.ArrayList;
 
-public class validateUser {
-    private ArrayList<User> allUsers;
+public class UserServices {
 
-    public validateUser(ArrayList<User> allUsers) {
-        this.allUsers = allUsers;
-    }
-
-    public String checkUser(String username, String password){
+    public String checkUser(String username, String password, ArrayList<User> allUsers){
         for(User user : allUsers){
             if(username.equals(user.getUsername()) && password.equals(user.getPassword())){
                 return user.getUserID();
@@ -19,4 +14,6 @@ public class validateUser {
         }
         return "";
     }
+
+
 }

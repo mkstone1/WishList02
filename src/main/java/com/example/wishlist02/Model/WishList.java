@@ -53,5 +53,9 @@ public class WishList implements Serializable {
         return userID;
     }
 
+    public int wishListID(){
+        return wishListID;
+    }
+
 
 }
