@@ -29,7 +29,7 @@
         alle lister
     </h3>
     <div class="usersWishList">
-    <p th:each="allWishLists: ${allWishLists}" >
+    <p th:each="allWishLists: ${allWishLists}" style="margin-right: 30px" >
         <a th:href="${allWishLists.url}" th:text="${allWishLists.name}"></a>
         <a th:href="${'/deleteWishList?wishListID='+allWishLists.wishListID + '&userID='+ userID}"> Delete wishlist</a>
     </p>
