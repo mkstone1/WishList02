@@ -1,8 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .create-user-header{
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     height: 80px;
     background: darkcyan;
+    align-items: center;
 
 }
 
@@ -13,6 +20,9 @@
     flex-wrap: wrap;
     padding-top: 10px;
     text-align: left;
-}
 
+}
+.logo-create-user{
+    margin: 10px;
+}
 

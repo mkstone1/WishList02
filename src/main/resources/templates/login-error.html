@@ -2,18 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>login failed</title>
+    <title>FAILED LOGIN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="/css/login-error.css">
 </head>
 <body>
-<h2>Login failed</h2>
-<form method="POST" action="/login" class="getInfo" >
-    <label for="username">User name</label>
-    <input type="text" id="username" name="username">
 
-    <label for="password">password</label>
-    <input type="password" id="password" name="password">
+<header class="login-error-header">
+    <img class="logo-login-error" src="/images/logo.png" alt="billede" height="80px" width="80px">
+    <h2>Login failed</h2>
+</header>
 
-    <input type="submit">
-</form>
+<br>
+<br>
+
+<div class="flex-box-login-error">
+
+    <form method="POST" action="/login" class="getInfo">
+
+        <div class="form-style">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" size="50">
+        </div>
+        <div class="form-style">
+
+            <label for="password">Password</label>
+            <input class="password-kasse" type="password" id="password" name="password" size="50">
+        </div>
+        <div class="form-style-submit">
+            <input class="knap" type="submit" value="Sign in">
+        </div>
+
+    </form>
+</div>
+
 </body>
 </html>
