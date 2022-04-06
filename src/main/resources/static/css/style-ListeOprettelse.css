@@ -3,6 +3,13 @@
     flex-direction: column;
     width: 250px;
 }
+header{
+    display: flex;
+    justify-content: center;
+    height: 80px;
+    background: darkcyan;
+
+}
 
 .usersWishList{
     display: flex;
@@ -12,4 +19,5 @@
 .main{
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
