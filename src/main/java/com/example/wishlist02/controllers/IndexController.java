@@ -17,11 +17,11 @@ import java.util.ArrayList;
 
 @Controller
 public class IndexController {
-    WishRepository wishRepository = new WishRepository();
-    WishListRepository wishListRepository = new WishListRepository();
-    UserRepository userRepository = new UserRepository();
-    UserServices userServices = new UserServices();
-    WishListServices wishListServices = new WishListServices();
+    private final WishRepository wishRepository = new WishRepository();
+    private final WishListRepository wishListRepository = new WishListRepository();
+    private final UserRepository userRepository = new UserRepository();
+    private final UserServices userServices = new UserServices();
+    private final WishListServices wishListServices = new WishListServices();
 
     @GetMapping("/")
     public String index() {
