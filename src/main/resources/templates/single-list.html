@@ -10,28 +10,25 @@
 <head>
     <meta charset="UTF-8">
     <title>listeOprettelse</title>
-    <link rel="stylesheet" href="css/style-ListeOprettelse.css">
 </head>
 <body>
-<div>
-    <header class="header">
-        <img src="images/logo.png" alt="billede" height="70px" width="70px">
-        <h2>All your wishlists</h2>
-    </header>
+<header class="header">
+    <img src="images/logo.png" alt="billede" height="70px" width="70px">
+    <h2>All your wishlists</h2>
+</header>
 
 
-    <div class="main">
-        <form method="POST" action="/createWishAndAddToWishList" class="getInfo">
-            <label for="titel">Titel</label>
-            <input type="text" id="titel" name="titel">
-            <label for="beskrivelse">Beskrivelse</label>
-            <input type="text" id="beskrivelse" name="beskrivelse">
-            <label for="pris">Pris</label>
-            <input type="number" id="pris" name="pris">
-            <input type="submit">
-        </form>
+<div class="main">
+    <form method="POST" action="/createWishAndAddToWishList" class="getInfo">
+        <label for="titel">Titel</label>
+        <input type="text" id="titel" name="titel">
+        <label for="beskrivelse">Beskrivelse</label>
+        <input type="text" id="beskrivelse" name="beskrivelse">
+        <label for="pris">Pris</label>
+        <input type="number" id="pris" name="pris">
+        <input type="submit">
+    </form>
 
-    </div>
     <div>
         <h2>Ønsker på denne liste</h2>
         <div>
