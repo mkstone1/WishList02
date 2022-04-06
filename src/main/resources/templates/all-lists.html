@@ -2,12 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>alleLister</title>
-    <link rel="stylesheet" href="../static/css/style-ListeOprettelse.css">
+    <title>Your lists</title>
+    <link rel="stylesheet" href="css/style-ListeOprettelse.css">
 </head>
 <body>
 
+<header class="header">
+    <img src="images/logo.png" alt="billede" height="70px" width="70px">
+    <h2>All your wishlists</h2>
+</header>
 
+<div class="main">
 <div>
     <form method="POST" action="/createWishList" class="getInfo" >
         <label for="wishListName">Titel på ønskeliste</label>
@@ -21,15 +26,17 @@
 
 <div>
     <h3>
-        alle lister
+        Your wishlists
     </h3>
+    <div class="usersWishList">
     <p th:each="allWishLists: ${allWishLists}" >
-        <a th:href="${allWishLists.url}" th:text="${allWishLists.name}"></a>
-        <a th:href="${'/deleteWishList?wishListID='+allWishLists.wishListID + '&userID='+ userID}"> Delete wish</a>
+        <a th:href="${allWishLists.url}" th:text="${allWishLists.name}"  style="margin-right: 30px"></a>
+        <a th:href="${'/deleteWishList?wishListID='+allWishLists.wishListID + '&userID='+ userID}"> Delete wishlist</a>
     </p>
+    </div>
 </div>
 
-
+</div>
 
 </body>
 </html>
