@@ -14,7 +14,6 @@
 }
 
 .flex-box-create-user{
-
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -25,4 +24,23 @@
 .logo-create-user{
     margin: 10px;
 }
+
+.form-style{
+    margin-top: 10px;
+}
+
+.form-style-submit{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.knap{
+    background: gainsboro;
+    height: 30px;
+    width: 80px;
+}
+
+
+
 

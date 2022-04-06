@@ -3,15 +3,13 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 .login-error-header{
     display: flex;
     justify-content: left;
     height: 80px;
     background: darkcyan;
     align-items: center;
-}
-.logo-login-error{
-    margin: 10px;
 }
 
 .flex-box-login-error{
@@ -21,20 +19,28 @@
     padding-top: 10px;
     text-align: left;
 }
+
+.logo-login-error{
+    margin: 10px;
+}
+
 .form-style{
     margin-top: 10px;
 
 }
+
 .form-style-submit{
     display: flex;
     justify-content: center;
     margin-top: 10px;
 }
+
 .knap{
     background: gainsboro;
     height: 30px;
     width: 50px;
 }
+
 .password-kasse{
     margin: 4px;
 }

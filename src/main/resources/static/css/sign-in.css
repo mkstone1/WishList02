@@ -18,13 +18,28 @@
     flex-wrap: wrap;
     padding-top: 10px;
     text-align: left;
+}
 
-}
-.sign-in-button{
-    display: flex;
-    justify-content: center;
-}
 .logo-sign-in{
     margin: 10px;
+}
+
+.form-style{
+    margin-top: 10px;
+}
+
+.form-style-submit{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.knap{
+    background: gainsboro;
+    height: 30px;
+    width: 50px;
+}
+.password-kasse{
+    margin: 4px;
 }
 

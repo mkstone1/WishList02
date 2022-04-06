@@ -20,49 +20,43 @@
 
 <div class="flex-box-create-user">
 
+    <form method="POST" action="/createUser">
 
-<form method="POST" action="/createUser">
+        <div class="form-style">
+            <label for="username">UserName</label>
+            <input type="text" id="username" name="username" size="50">
+        </div>
 
-<table>
+        <div class="form-style">
+            <label for="firstname">FirstName</label>
+            <input type="text" id="firstname" name="firstname" size="50">
+        </div>
 
-    <tr>
-        <th><label for="username">User Name</label></th>
-        <th><input type="text" id="username" name="username" size="50"></th>
-    </tr>
+        <div class="form-style">
+            <label for="lastname">LastName</label>
+            <input type="text" id="lastname" name="lastname" size="50">
+        </div>
 
+        <div class="form-style">
+            <label for="email">E-mail adr</label>
+            <input type="text" id="email" name="email" size="50">
+        </div>
 
-    <tr>
-        <th><label for="firstname">First Name</label></th>
-        <th><input type="text" id="firstname" name="firstname" size="50"></th>
-    </tr>
+        <div class="form-style">
+            <label for="password">Password</label>
+            <input class="password-kasse" type="text" id="password" name="password" size="50">
+        </div>
 
-    <tr>
-        <th><label for="lastname">Last Name</label></th>
-        <th><input type="text" id="lastname" name="lastname" size="50"></th>
-    </tr>
+        <div class="form-style">
+            <label for="phone-number">PhoneNum</label>
+            <input type="text" id="phone-number" name="phone-number" size="50">
+        </div>
 
-    <tr>
-        <th><label for="email">Email</label></th>
-        <th><input type="text" id="email" name="email" size="50"></th>
-    </tr>
+        <div class="form-style-submit">
+            <input class="knap" type="submit" value="Add User">
+        </div>
 
-    <tr>
-        <th><label for="password">Password</label></th>
-        <th><input type="text" id="password" name="password" size="50"></th>
-    </tr>
-
-    <tr>
-        <th><label for="phone-number">Phone number</label></th>
-        <th><input type="text" id="phone-number" name="phone-number" size="50"></th>
-    </tr>
-
-    <tr>
-        <th><input type="submit" value="Add User"></th>
-    </tr>
-
-</table>
-
-</form>
+    </form>
 
 </div>
 </body>
