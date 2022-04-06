@@ -2,18 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>login failed</title>
+    <title>SIGN IN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/sign-in.css">
+
 </head>
 <body>
-<h2>Login failed</h2>
-<form method="POST" action="/login" class="getInfo" >
-    <label for="username">User name</label>
-    <input type="text" id="username" name="username">
 
-    <label for="password">password</label>
-    <input type="password" id="password" name="password">
+<header class="sing-in-header">
+    <img src="images/logo.png" alt="billede" height="70px" width="70px">
+    <h2>Sign in</h2>
+</header>
+<br>
+<br>
+<div class="error">
+<p> Wrong username or password</p>
+</div>
+<div class="flex-box-sign-in">
 
-    <input type="submit">
-</form>
+
+    <form method="POST" action="/login" class="getInfo">
+
+        <table>
+
+            <tr>
+                <th><label for="username">User name</label></th>
+                <th><input type="text" id="username" name="username" size="50"></th>
+            </tr>
+
+            <tr>
+                <th><label for="password">Password</label></th>
+                <th><input type="password" id="password" name="password" size="50"></th>
+            </tr>
+            <tr>
+                <th><input type="submit" value="Sign in"></th>
+            </tr>
+
+        </table>
+    </form>
+
+</div>
+
 </body>
 </html>

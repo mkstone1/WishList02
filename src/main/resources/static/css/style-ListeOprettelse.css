@@ -3,3 +3,7 @@
     flex-direction: column;
     width: 250px;
 }
+
+.usersWishList{
+    display: flex;
+}
