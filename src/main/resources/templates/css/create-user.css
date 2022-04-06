@@ -1,6 +1,8 @@
 .create-user-header{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    height: 80px;
+    background: darkcyan;
 
 }
 

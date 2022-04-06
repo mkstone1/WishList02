@@ -1,6 +1,10 @@
 .sing-in-header{
     display: flex;
     justify-content: center;
+    height: 80px;
+    background: darkcyan;
+
+
 
 }
 

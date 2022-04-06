@@ -1,0 +1,47 @@
+.flex-box{
+    height: 80px;
+    background: darkcyan;
+    width: 100%;
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+a{
+    text-decoration: none;
+}
+
+.tilmeld{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    padding: 10px 20px;
+    background: white;
+    color: lightskyblue;
+    border-radius: 70px;
+    border-style: solid;
+    font-weight: lighter;
+    font-size: large;
+}
+
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    padding: 10px 20px;
+    background: white;
+    color: lightskyblue;
+    border-radius: 70px;
+    border-style: solid;
+    font-weight: lighter;
+    font-size: large;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+}
