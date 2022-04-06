@@ -10,11 +10,15 @@
 <head>
     <meta charset="UTF-8">
     <title>listeOprettelse</title>
-    <link rel="stylesheet" href="css/style-ListeOprettelse.css">
+    <link rel="stylesheet" href="css/single-list.css">
 </head>
 <body>
-<div>
+<header class="header">
+    <img src="images/logo.png" alt="billede" height="70px" width="70px">
+    <h2>All your wishlists</h2>
+</header>
 
+<div class="main">
     <form method="POST" action="/createWishAndAddToWishList" class="getInfo">
         <label for="titel">Titel</label>
         <input type="text" id="titel" name="titel">
@@ -25,16 +29,16 @@
         <input type="submit">
     </form>
 
-</div>
-<div>
-    <h2>Ønsker på denne liste</h2>
     <div>
-    <p th:each="wishes: ${wishes}">
-        <a th:href="${'/deleteWish?id='+wishes.wishID}"> Delete wish</a>
-        <span th:text="${wishes.name}"></span>
-        <span th:text="${wishes.description}"></span>
-        <span th:text="${wishes.price}"></span>
-    </p>
+        <h2>Ønsker på denne liste</h2>
+        <div>
+            <p th:each="wishes: ${wishes}">
+                <a th:href="${'/deleteWish?id='+wishes.wishID}"> Delete wish</a>
+                <span th:text="${wishes.name}"></span>
+                <span th:text="${wishes.description}"></span>
+                <span th:text="${wishes.price}"></span>
+            </p>
+        </div>
     </div>
 </div>
 
