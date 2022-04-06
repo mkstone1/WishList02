@@ -31,7 +31,7 @@
     <div class="usersWishList">
     <p th:each="allWishLists: ${allWishLists}" >
         <a th:href="${allWishLists.url}" th:text="${allWishLists.name}"  style="margin-right: 30px"></a>
-        <a th:href="${'/deleteWishList?wishListID='+allWishLists.wishListID + '&userID='+ userID}" style="display: flex; justify-content: flex-end"> Delete wishlist</a>
+        <a th:href="${'/deleteWishList?wishListID='+allWishLists.wishListID + '&userID='+ userID}"> Delete wishlist</a>
     </p>
     </div>
 </div>
