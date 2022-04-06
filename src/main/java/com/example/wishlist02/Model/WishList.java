@@ -5,19 +5,24 @@ import java.util.ArrayList;
 
 public class WishList implements Serializable {
     private String name;
-    private int wishList_ID;
+    private int wishListID;
     private String url;
+    private String userID;
 
     public WishList(){}
 
 
-    public WishList(String name) {
+    public WishList(String name, String userID) {
         this.name = name;
+        this.userID = userID;
     }
-    public WishList(String name, int wishList_ID, String url) {
+
+
+    public WishList(String name, int wishListID, String url,String userID) {
         this.name = name;
-        this.wishList_ID = wishList_ID;
+        this.wishListID = wishListID;
         this.url = url;
+        this.userID = userID;
     }
 
     public String getName() {
@@ -25,7 +30,7 @@ public class WishList implements Serializable {
     }
 
     public void generateUrl(){
-        url = "list?id=" + wishList_ID;
+        url = "list?id=" + wishListID;
     }
 
     public void setName(String name) {
@@ -33,15 +38,19 @@ public class WishList implements Serializable {
     }
 
     public void setWishList_ID(int wishList_ID){
-        this.wishList_ID = wishList_ID;
+        this.wishListID = wishList_ID;
     }
 
     public int getWishList_ID(){
-        return wishList_ID;
+        return wishListID;
     }
 
     public String getUrl(){
         return url;
+    }
+
+    public String getUserID(){
+        return userID;
     }
 
 

@@ -9,14 +9,14 @@
 
 
 <div>
-
     <form method="POST" action="/createWishList" class="getInfo" >
         <label for="wishListName">Titel på ønskeliste</label>
         <input type="text" id="wishListName" name="wishListName">
-        <label for="user">Bruger navn</label>
-        <input type="text" id="user" name="user">
+        <input type="hidden" th:attr="name='userID'" th:value="${userID}">
         <input type="submit">
     </form>
+
+    <a th:href="${'/createWishList?id='+userID}"> Delete wish</a>
 
 </div>
 
