@@ -3,7 +3,7 @@
     `wishlist_name` varchar(45) DEFAULT NULL,
     `user_id` int(10) unsigned NOT NULL,
     PRIMARY KEY (`wishlist_id`),
-    UNIQUE KEY `wishlistID_UNIQUE` (`wishlist_id`),
+    UNIQUE KEY `wishlistID_UNIQUE` (`wishlist_id`) ,
     KEY `userID_idx` (`user_id`),
     CONSTRAINT `userID` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
   )
