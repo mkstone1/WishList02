@@ -41,10 +41,10 @@ public class IndexController {
     }
 
     @GetMapping("/list")
-    public String getSingleListById(@RequestParam String id, Model m) {
+    public String getSingleListById(@RequestParam String wishListId, Model m) {
 
-        m.addAttribute("wishes", wishRepository.getWishesFromWishlistID(id));
-        wishListRepository.setActiveWishList(wishListRepository.getWishlistByID(Integer.parseInt(id)));
+        m.addAttribute("wishes", wishRepository.getWishesFromWishlistID(wishListId));
+        wishListRepository.setActiveWishList(wishListRepository.getWishlistByID(Integer.parseInt(wishListId)));
 
         //Kode der fetcher fra databasen, baseret på id
         //Put data på template
@@ -70,7 +70,7 @@ public class IndexController {
         wishListRepository.setActiveWishList(newWishList);
         wishListRepository.saveWishListToDB();
         newWishList.setWishList_ID(wishListRepository.getLastCreatedWishListID());
-        newWishList.generateUrl();
+        newWishList.generateUrl(userID);
         wishListRepository.addToAllWishlists(newWishList);
         wishListRepository.setActiveWishList(newWishList);
         return "redirect:/" + wishListRepository.getActiveWishList().getUrl();}

@@ -29,8 +29,8 @@ public class WishList implements Serializable {
         return name;
     }
 
-    public void generateUrl(){
-        url = "list?id=" + wishListID;
+    public void generateUrl(String userID){
+        url = "list?wishListId=" + wishListID + "&userID=" + userID;
     }
 
     public void setName(String name) {
