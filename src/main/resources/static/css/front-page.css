@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-.flex-box{
+.flex-box-header{
     height: 80px;
     background: darkcyan;
     width: 100%;
@@ -54,5 +54,8 @@ a{
 .nav-links{
     display: flex;
     justify-content: space-around;
-    width: 50%;
+    width: 30%;
+}
+.logo-frontpage{
+    margin: 10px;
 }

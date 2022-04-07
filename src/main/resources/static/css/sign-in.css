@@ -1,9 +1,15 @@
-.sing-in-header{
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.sign-in-header{
     display: flex;
-    justify-content: center;
+    justify-content: left;
     height: 80px;
     background: darkcyan;
-
+    align-items: center;
 }
 
 .flex-box-sign-in{
@@ -12,15 +18,28 @@
     flex-wrap: wrap;
     padding-top: 10px;
     text-align: left;
-
-}
-.sign-in-button{
-    display: flex;
-    justify-content: center;
 }
 
-.error{
+.logo-sign-in{
+    margin: 10px;
+}
+
+.form-style{
+    margin-top: 10px;
+}
+
+.form-style-submit{
     display: flex;
     justify-content: center;
-    color: red;
+    margin-top: 10px;
 }
+
+.knap{
+    background: gainsboro;
+    height: 30px;
+    width: 50px;
+}
+.password-kasse{
+    margin: 4px;
+}
+

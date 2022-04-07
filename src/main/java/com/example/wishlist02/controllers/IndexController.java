@@ -103,7 +103,7 @@ public class IndexController {
 
     @GetMapping("/login")
     public String login(){
-        return "sign_in";
+        return "sign-in";
     }
     @GetMapping("/login-error")
     public String loginError(){

@@ -4,29 +4,29 @@
     box-sizing: border-box;
 }
 
-.create-user-header{
+.login-error-header{
     display: flex;
     justify-content: left;
     height: 80px;
     background: darkcyan;
     align-items: center;
-
 }
 
-.flex-box-create-user{
+.flex-box-login-error{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     padding-top: 10px;
     text-align: left;
-
 }
-.logo-create-user{
+
+.logo-login-error{
     margin: 10px;
 }
 
 .form-style{
     margin-top: 10px;
+
 }
 
 .form-style-submit{
@@ -38,9 +38,10 @@
 .knap{
     background: gainsboro;
     height: 30px;
-    width: 80px;
+    width: 50px;
 }
 
-
-
+.password-kasse{
+    margin: 4px;
+}
 
