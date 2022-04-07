@@ -1,0 +1,11 @@
+CREATE TABLE `wish` (
+   `wish_id` int(11) NOT NULL AUTO_INCREMENT,
+   `wish_name` varchar(45) DEFAULT NULL,
+   `description` varchar(45) DEFAULT NULL,
+   `price` int(11) DEFAULT NULL,
+   `wishlist_id` int(11) DEFAULT NULL,
+   PRIMARY KEY (`wish_id`),
+   UNIQUE KEY `wishID_UNIQUE` (`wish_id`),
+   KEY `wishlist_id_idx` (`wishlist_id`),
+   CONSTRAINT `wishlist_id` FOREIGN KEY (`wishlist_id`) REFERENCES `wishlist` (`wishlist_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+ )
