@@ -7,7 +7,7 @@ header{
     display: flex;
     height: 80px;
     background: darkcyan;
-
+    justify-content: left;
 }
 
 .usersWishList{

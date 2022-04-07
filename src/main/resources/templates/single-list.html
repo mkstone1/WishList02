@@ -15,11 +15,12 @@
 <body>
 <header class="header">
     <img src="images/logo.png" alt="billede" height="70px" width="70px">
-    <h2>All your wishlists</h2>
 </header>
-
+<br>
+<br>
 <div class="main">
-        <form method="POST" action="/createWishAndAddToWishList" class="formBox" >
+    <div>
+        <form method="POST" action="/createWishAndAddToWishList" class="formBox">
             <label for="titel">Titel</label>
             <input type="text" id="titel" name="titel">
             <label for="beskrivelse">Beskrivelse</label>
@@ -28,6 +29,7 @@
             <input type="number" id="pris" name="pris">
             <input type="submit" value="Add Wish">
         </form>
+    </div>
     <br>
     <br>
     <a th:href="${'lists'+ '?userID='+ userID}" class="button"> Go back</a>
