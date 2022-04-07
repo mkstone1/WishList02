@@ -19,8 +19,7 @@
 </header>
 
 <div class="main">
-    <div class="formBox">
-        <form method="POST" action="/createWishAndAddToWishList" >
+        <form method="POST" action="/createWishAndAddToWishList" class="formBox" >
             <label for="titel">Titel</label>
             <input type="text" id="titel" name="titel">
             <label for="beskrivelse">Beskrivelse</label>
@@ -29,7 +28,6 @@
             <input type="number" id="pris" name="pris">
             <input type="submit" value="Add Wish">
         </form>
-    </div>
     <br>
     <br>
     <a th:href="${'lists'+ '?userID='+ userID}" class="button"> Go back</a>
