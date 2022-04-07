@@ -3,7 +3,7 @@ header{
     justify-content: left;
     height: 80px;
     background: darkcyan;
-
+    align-items: center;
 }
 .main{
     display: flex;

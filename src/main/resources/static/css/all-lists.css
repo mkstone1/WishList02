@@ -5,9 +5,10 @@
 }
 header{
     display: flex;
+    justify-content: left;
     height: 80px;
     background: darkcyan;
-    justify-content: left;
+    align-items: center;
 }
 
 .usersWishList{

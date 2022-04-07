@@ -52,7 +52,7 @@ public class IndexController {
 
     @PostMapping("/createWishAndAddToWishList")
     public String createWish(WebRequest dataFromForm) {
-        Wish newWish = new Wish(dataFromForm.getParameter("titel"), dataFromForm.getParameter("beskrivelse"), Integer.parseInt(dataFromForm.getParameter("pris")));
+        Wish newWish = new Wish(dataFromForm.getParameter("title"), dataFromForm.getParameter("description"), Integer.parseInt(dataFromForm.getParameter("price")));
         int wishID = wishRepository.saveWishToDB(newWish, wishListRepository.getActiveWishList().getWishList_ID());
         newWish.setWishID(wishID);
 
