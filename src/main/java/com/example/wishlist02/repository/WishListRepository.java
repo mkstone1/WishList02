@@ -87,8 +87,9 @@ public class WishListRepository {
             ResultSet resultSet = psts.executeQuery();
 
             while(resultSet.next()){
-                String id = resultSet.getString(1);
-                allWishLists.add(new WishList(resultSet.getString(2),Integer.parseInt(id), "list?id=" + id,resultSet.getString(3)));
+                String wishListid = resultSet.getString(1);
+                String userID=  resultSet.getString(3);
+                allWishLists.add(new WishList(resultSet.getString(2),Integer.parseInt(wishListid), "list?wishListId=" + wishListid + "&userID="+ userID,resultSet.getString(3)));
 
             }
             this.allWishList = allWishLists;
@@ -119,8 +120,8 @@ public class WishListRepository {
             ResultSet resultSet = psts.executeQuery();
 
             while(resultSet.next()){
-                String id = resultSet.getString(1);
-                wishListsByID.add(new WishList(resultSet.getString(2),Integer.parseInt(id), "list?id=" + id,resultSet.getString(3)));
+                String wishListid = resultSet.getString(1);
+                wishListsByID.add(new WishList(resultSet.getString(2),Integer.parseInt(wishListid), "list?wishListId=" + wishListid + "&userID="+ userID,resultSet.getString(3)));
             }
             this.allWishList = wishListsByID;
             return wishListsByID;

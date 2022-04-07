@@ -41,9 +41,10 @@ public class IndexController {
     }
 
     @GetMapping("/list")
-    public String getSingleListById(@RequestParam String wishListId, Model m) {
+    public String getSingleListById(@RequestParam String wishListId, Model m, @RequestParam String userID) {
 
         m.addAttribute("wishes", wishRepository.getWishesFromWishlistID(wishListId));
+        m.addAttribute("userID", userID);
         wishListRepository.setActiveWishList(wishListRepository.getWishlistByID(Integer.parseInt(wishListId)));
 
         //Kode der fetcher fra databasen, baseret på id
