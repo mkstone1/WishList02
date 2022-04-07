@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Your lists</title>
-    <link rel="stylesheet" href="css/style-ListeOprettelse.css">
+    <link rel="stylesheet" href="css/all-lists.css">
 </head>
 <body>
 
@@ -31,8 +31,8 @@
     </h3>
     <div class="usersWishList">
     <p th:each="allWishLists: ${allWishLists}" >
+        <a th:href="${'/deleteWishList?wishListID='+allWishLists.wishListID + '&userID='+ userID}"><img src="images/deleteButton.png" alt="billede" height="15px" width="15px"></a>
         <a th:href="${allWishLists.url}" th:text="${allWishLists.name}"  style="margin-right: 30px"></a>
-        <a th:href="${'/deleteWishList?wishListID='+allWishLists.wishListID + '&userID='+ userID}"> Delete wishlist</a>
     </p>
     </div>
 </div>

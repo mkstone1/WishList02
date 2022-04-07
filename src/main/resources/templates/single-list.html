@@ -19,15 +19,15 @@
 </header>
 
 <div class="main">
-    <div class="formBox">
-    <form method="POST" action="/createWishAndAddToWishList" class="getInfo">
+    <div >
+    <form method="POST" action="/createWishAndAddToWishList" class="formBox">
         <label for="titel">Titel</label>
         <input type="text" id="titel" name="titel">
         <label for="beskrivelse">Beskrivelse</label>
         <input type="text" id="beskrivelse" name="beskrivelse">
         <label for="pris">Pris</label>
         <input type="number" id="pris" name="pris">
-        <input type="submit">
+        <input type="submit" value="Add Wish">
     </form>
     </div>
     <br>
@@ -37,7 +37,7 @@
         <h2>Ønsker på denne liste</h2>
         <div>
             <p th:each="wishes: ${wishes}">
-                <a th:href="${'/deleteWish?id='+wishes.wishID}"> Delete wish</a>
+                <a th:href="${'/deleteWish?id='+wishes.wishID}"><img src="images/deleteButton.png" alt="billede" height="15px" width="15px"></a>
                 <span th:text="${wishes.name}"></span>
                 <span th:text="${wishes.description}"></span>
                 <span th:text="${wishes.price}"></span>
