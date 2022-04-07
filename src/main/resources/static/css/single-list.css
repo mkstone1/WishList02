@@ -10,3 +10,8 @@ header{
     align-items: center;
     flex-direction: column;
 }
+
+.formBox{
+    display: flex;
+    flex-direction: column;
+}
