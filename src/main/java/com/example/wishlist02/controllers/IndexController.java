@@ -91,7 +91,8 @@ public class IndexController {
 
         User newUser = new User(username,password,firstname,lastname,email,phoneNumber);
         userRepository.createUser(newUser);
-        return "redirect:/all-lists";
+        String userID = userRepository.getLastCreatedUserID();
+        return "redirect:/lists" +"?userID=" + userID;
 
     }
     @GetMapping("/deleteWish")

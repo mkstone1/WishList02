@@ -59,4 +59,24 @@ public class UserRepository {
         }
 
     return allUsers;}
+
+    public String getLastCreatedUserID(){
+        //Til at oprette forbindelse til DB
+        try {
+            Connection conn = DriverManager.getConnection(connectionString, username, password);
+            PreparedStatement psts = conn.prepareStatement("SELECT user_id from user order by user_id DESC LIMIT 1");
+            ResultSet resultSet = psts.executeQuery();
+            String userID = "";
+            while(resultSet.next()){
+                userID = resultSet.getString(1);
+            }
+            return userID;
+        }
+
+        catch (SQLException e){
+            System.out.println("Cannot connect to database or error in database");
+            e.printStackTrace();
+            return "";
+        }
+    }
 }

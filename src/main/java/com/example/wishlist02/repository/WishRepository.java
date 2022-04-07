@@ -30,8 +30,8 @@ public class WishRepository {
 
             int row = preparedStatement.executeUpdate();
 
-            //Finder det wishID der lige er blevet oprettet og returnere det
-            PreparedStatement psts = conn.prepareStatement("SELECT wishID from wish order by wishID DESC LIMIT 1");
+            //Finder det wish_id der lige er blevet oprettet og returnere det
+            PreparedStatement psts = conn.prepareStatement("SELECT wish_id from wish order by wish_id DESC LIMIT 1");
             ResultSet resultSet = psts.executeQuery();
             while (resultSet.next()) {
                 row = Integer.parseInt(resultSet.getString(1));
@@ -51,7 +51,7 @@ public class WishRepository {
         try {
 
             Connection conn = DriverManager.getConnection(connectionString, username, password);
-            PreparedStatement psts = conn.prepareStatement("select wish_name,description,price,wishID from wish where wishlist_id =" + id);
+            PreparedStatement psts = conn.prepareStatement("select wish_name,description,price,wish_id from wish where wishlist_id =" + id);
 //select wish_name,description,price from wishlist left join wish on wishlist.wishlist_id = wish.wishlist_id\n" +
 //                    "where wishlist.wishlist_id =" +id
 
@@ -61,8 +61,8 @@ public class WishRepository {
                 String wish_name = resultSet.getString(1);
                 String description = resultSet.getString(2);
                 int price = resultSet.getInt(3);
-                int wishID = resultSet.getInt(4);
-                allWishes.add(new Wish(wish_name, description, price, wishID));
+                int wish_id = resultSet.getInt(4);
+                allWishes.add(new Wish(wish_name, description, price, wish_id));
             }
             return allWishes;
 
@@ -74,7 +74,7 @@ public class WishRepository {
     }
 
     public void deleteWishFromWishlistByWishID(String id) {
-        String SQL_DELETE = "DELETE FROM wish where wishID= (?)";
+        String SQL_DELETE = "DELETE FROM wish where wish_id= (?)";
         try {
             Connection conn = DriverManager.getConnection(connectionString, username, password);
 
