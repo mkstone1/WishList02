@@ -14,28 +14,29 @@
 <br>
 <br>
 <div class="main">
-<div>
-    <form method="POST" action="/createWishList" class="getInfo" >
-        <label for="wishListName">Titel på ønskeliste</label>
-        <input type="text" id="wishListName" name="wishListName">
-        <input type="hidden" th:attr="name='userID'" th:value="${userID}">
-        <input type="submit">
-    </form>
+    <div>
+        <form method="POST" action="/createWishList" class="getInfo">
+            <label for="wishListName">Titel på ønskeliste</label>
+            <input type="text" id="wishListName" name="wishListName">
+            <input type="hidden" th:attr="name='userID'" th:value="${userID}">
+            <input type="submit">
+        </form>
 
 
-</div>
-
-<div>
-    <h3>
-        Your wishlists
-    </h3>
-    <div class="usersWishList">
-    <p th:each="allWishLists: ${allWishLists}" >
-        <a th:href="${'/deleteWishList?wishListID='+allWishLists.wishListID + '&userID='+ userID}"><img src="images/deleteButton.png" alt="billede" height="15px" width="15px"></a>
-        <a th:href="${allWishLists.url}" th:text="${allWishLists.name}"  style="margin-right: 30px"></a>
-    </p>
     </div>
-</div>
+
+    <div>
+        <h3>
+            Your wishlists
+        </h3>
+        <div class="usersWishList">
+            <p th:each="allWishLists: ${allWishLists}">
+                <a th:href="${'/deleteWishList?wishListID='+allWishLists.wishListID + '&userID='+ userID}"><img
+                        src="images/deleteButton.png" alt="billede" height="15px" width="15px"></a>
+                <a th:href="${allWishLists.url}" th:text="${allWishLists.name}" style="margin-right: 30px"></a>
+            </p>
+        </div>
+    </div>
 
 </div>
 
