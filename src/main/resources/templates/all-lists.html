@@ -16,10 +16,10 @@
 <div class="main">
     <div>
         <form method="POST" action="/createWishList" class="getInfo">
-            <label for="wishListName">Titel på ønskeliste</label>
+            <label for="wishListName">Wishlist title</label>
             <input type="text" id="wishListName" name="wishListName">
             <input type="hidden" th:attr="name='userID'" th:value="${userID}">
-            <input type="submit">
+            <input type="submit" value="Create list">
         </form>
 
 
