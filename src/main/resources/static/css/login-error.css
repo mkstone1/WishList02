@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-.sign-in-header{
+.login-error-header{
     display: flex;
     justify-content: left;
     height: 80px;
@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.flex-box-sign-in{
+.flex-box-login-error{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -20,12 +20,13 @@
     text-align: left;
 }
 
-.logo-sign-in{
+.logo-login-error{
     margin: 10px;
 }
 
 .form-style{
     margin-top: 10px;
+
 }
 
 .form-style-submit{
@@ -39,12 +40,14 @@
     height: 30px;
     width: 50px;
 }
+
 .password-kasse{
     margin: 4px;
 }
-
 .error{
     display: flex;
     justify-content: center;
     color: red;
+
 }
+
